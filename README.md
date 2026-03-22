@@ -29,22 +29,25 @@ A focused compliance operations UI for tracking regulatory tasks per client: cli
    npm install
    ```
 
-## Environment Configuration
-Copy the environment template and add your project credentials:
+2. Copy the environment template and add your project credentials:
 
+```bash
 cp .env.example .env.local
+```
 
-| Variable | Description |
-| SUPABASE_URL | Project URL |
-| SUPABASE_ANON_KEY | anon / public key |
-## Supabase Setup
-In the Supabase SQL editor, run the following scripts in order:
+| Variable            | Description                  |
+|---------------------|------------------------------|
+| `SUPABASE_URL`      | Project URL                  |
+| `SUPABASE_ANON_KEY` | anon / public key            |
+
+
+3. In the Supabase SQL editor, run the following scripts in order:
 
 1. `supabase/schema.sql`
 2. `supabase/seed.sql`
 
-## Development Server
-Start the dev server:
+
+4. Start the dev server:
 
 ```bash
 npm run dev
@@ -52,11 +55,14 @@ npm run dev
 Open http://localhost:3000/.
 
 ## Scripts
-| Command | Purpose |
-| npm run dev | Development (Turbopack) |
-| npm run build | Production build |
-| npm run start | Run production server |
-| npm run lint | ESLint |
+
+| Command          | Purpose                              |
+|------------------|--------------------------------------|
+| `npm run dev`    | Development (Turbopack)              |
+| `npm run build`  | Production build                     |
+| `npm run start`  | Run production server                |
+| `npm run lint`   | ESLint                               |
+
 ## Deployment (Vercel)
 1. Push to GitHub.
 2. Import the repo in Vercel.
