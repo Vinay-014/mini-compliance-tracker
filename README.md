@@ -1,6 +1,17 @@
 # Mini Compliance Tracker
 
-A focused compliance operations UI for tracking regulatory tasks per client: client workspace, task cards with status and overdue handling, filters, and a modal to add tasks. Built for clarity and fast deployment—no authentication layer.
+<div align="center">
+https://img.shields.io/badge/Compliance-Tracking-blue
+https://img.shields.io/badge/Next.js-15-black
+https://img.shields.io/badge/TypeScript-5.0-blue
+https://img.shields.io/badge/Supabase-PostgreSQL-green
+https://img.shields.io/badge/Tailwind-CSS-38B2AC
+
+Regulatory Task Management • Client Workspaces • Real-Time Status Tracking
+
+</div>
+
+Mini Compliance Tracker is an enterprise-grade compliance operations interface designed for regulatory task management across client portfolios. The system provides centralized oversight of compliance obligations, automated overdue handling, and intuitive task management workflows.
 
 ## Stack
 
