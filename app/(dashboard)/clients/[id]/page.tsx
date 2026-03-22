@@ -1,9 +1,9 @@
-import Link from "next/link";
 import { notFound } from "next/navigation";
 import { Suspense } from "react";
-import { AddTaskForm } from "@/components/AddTaskForm";
-import { TaskFilters } from "@/components/TaskFilters";
-import { TaskTable } from "@/components/TaskTable";
+
+import { ClientPageHeader } from "@/components/client-page-header";
+import { TaskFiltersBar } from "@/components/task-filters";
+import { TaskGrid } from "@/components/task-grid";
 import { applyTaskFilters } from "@/lib/task-utils";
 import { getSupabase } from "@/lib/supabase";
 import type { StatusFilter, TaskRow } from "@/types";
@@ -50,10 +50,11 @@ export default async function ClientTasksPage({
 
   if (tasksError) {
     return (
-      <main className="mx-auto max-w-5xl px-4 py-10">
-        <p className="rounded border border-red-200 bg-red-50 p-4 text-red-800">
-          Could not load tasks: {tasksError.message}
-        </p>
+      <main className="relative px-4 py-10 md:px-6 lg:px-10">
+        <div className="mx-auto max-w-6xl rounded-2xl border border-destructive/30 bg-destructive/5 px-6 py-8 text-destructive">
+          <p className="font-medium">Could not load tasks</p>
+          <p className="mt-1 text-sm opacity-90">{tasksError.message}</p>
+        </div>
       </main>
     );
   }
@@ -66,27 +67,22 @@ export default async function ClientTasksPage({
   const filtered = applyTaskFilters(allTasks, statusFilter, categoryFilter);
 
   return (
-    <main className="mx-auto max-w-5xl px-4 py-10">
-      <Link
-        href="/"
-        className="text-sm font-medium text-slate-600 hover:text-slate-900"
-      >
-        ← All clients
-      </Link>
+    <main className="relative px-4 py-8 md:px-6 lg:px-10 lg:py-10">
+      <div className="mx-auto max-w-6xl space-y-8">
+        <ClientPageHeader
+          clientId={id}
+          companyName={client.company_name}
+          country={client.country}
+          entityType={client.entity_type}
+        />
 
-      <header className="mt-4 border-b border-slate-200 pb-6">
-        <h1 className="text-2xl font-semibold text-slate-900">
-          {client.company_name}
-        </h1>
-        <p className="mt-1 text-slate-600">
-          {client.country} · {client.entity_type}
-        </p>
-      </header>
-
-      <section className="mt-8 space-y-6">
-        <div className="flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
-          <Suspense fallback={<div className="h-10 w-full max-w-md animate-pulse rounded bg-slate-200" />}>
-            <TaskFilters
+        <div className="rounded-2xl border border-border/50 bg-card/50 p-4 shadow-sm backdrop-blur-md dark:bg-card/40 sm:p-6">
+          <Suspense
+            fallback={
+              <div className="h-12 w-full max-w-xl animate-pulse rounded-xl bg-muted/60" />
+            }
+          >
+            <TaskFiltersBar
               clientId={id}
               status={statusFilter}
               category={categoryFilter}
@@ -95,10 +91,8 @@ export default async function ClientTasksPage({
           </Suspense>
         </div>
 
-        <TaskTable clientId={id} tasks={filtered} />
-
-        <AddTaskForm clientId={id} />
-      </section>
+        <TaskGrid clientId={id} tasks={filtered} />
+      </div>
     </main>
   );
 }

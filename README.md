@@ -47,10 +47,10 @@ git commit -m "docs: Supabase schema, seed data, and environment example"
 
 ## Project layout
 
-- `app/page.tsx` — client list
-- `app/clients/[id]/page.tsx` — tasks, filters, add form
-- `app/clients/[id]/actions.ts` — server actions (create task, update status)
-- `components/TaskTable.tsx` — table + status dropdown
-- `components/TaskFilters.tsx` — status/category filters (URL query)
+- `app/(dashboard)/page.tsx` — client overview (cards)
+- `app/(dashboard)/clients/[id]/page.tsx` — tasks grid, filters, add-task dialog
+- `app/(dashboard)/layout.tsx` — shell with sidebar
+- `lib/actions/tasks.ts` — server actions (create task, update status)
+- `components/task-grid.tsx`, `task-card.tsx`, `task-filters.tsx`, `add-task-dialog.tsx`
 - `lib/supabase.ts` — Supabase client
 - `supabase/schema.sql` — tables + RLS policies for demo

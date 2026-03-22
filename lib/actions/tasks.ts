@@ -21,7 +21,9 @@ function parsePriority(value: string | null): TaskPriority {
   return "Medium";
 }
 
-export async function createTask(formData: FormData) {
+async function createTaskImpl(
+  formData: FormData
+): Promise<{ error?: string; ok?: boolean }> {
   const clientId = String(formData.get("clientId") ?? "");
   const title = String(formData.get("title") ?? "").trim();
   const descriptionRaw = formData.get("description");
@@ -58,7 +60,19 @@ export async function createTask(formData: FormData) {
   }
 
   revalidatePath(`/clients/${clientId}`);
+  revalidatePath("/");
   return { ok: true as const };
+}
+
+export async function createTask(formData: FormData) {
+  return createTaskImpl(formData);
+}
+
+export async function createTaskAction(
+  _prev: { error?: string; ok?: boolean } | null,
+  formData: FormData
+) {
+  return createTaskImpl(formData);
 }
 
 export async function updateTaskStatus(
