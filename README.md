@@ -44,28 +44,28 @@ Mini Compliance Tracker is an enterprise-grade compliance operations interface d
 
 2. Copy the environment template and add your project credentials:
 
-```bash
-cp .env.example .env.local
-```
+  ```bash
+  cp .env.example .env.local
+  ```
 
-| Variable            | Description                  |
-|---------------------|------------------------------|
-| `SUPABASE_URL`      | Project URL                  |
-| `SUPABASE_ANON_KEY` | anon / public key            |
+  | Variable            | Description                  |
+  |---------------------|------------------------------|
+  | `SUPABASE_URL`      | Project URL                  |
+  | `SUPABASE_ANON_KEY` | ANON / public key            |
 
 
 3. In the Supabase SQL editor, run the following scripts in order:
 
-1. `supabase/schema.sql`
-2. `supabase/seed.sql`
+  1. `supabase/schema.sql`
+  2. `supabase/seed.sql`
 
 
 4. Start the dev server:
 
-```bash
-npm run dev
-```
-Open http://localhost:3000/.
+  ```bash
+  npm run dev
+  ```
+  Open http://localhost:3000/.
 
 ## Scripts
 
