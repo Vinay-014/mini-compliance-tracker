@@ -12,6 +12,8 @@
 
 </div>
 
+Mini Compliance Tracker is an enterprise-grade compliance operations interface designed for regulatory task management across client portfolios. The system provides centralized oversight of compliance obligations, automated overdue handling, and intuitive task management workflows.
+
 ## Stack
 
 - **Framework:** Next.js 15 (App Router), React 19, TypeScript  
