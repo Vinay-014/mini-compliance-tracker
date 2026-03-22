@@ -1,17 +1,16 @@
 # Mini Compliance Tracker
 
 <div align="center">
-https://img.shields.io/badge/Compliance-Tracking-blue
-https://img.shields.io/badge/Next.js-15-black
-https://img.shields.io/badge/TypeScript-5.0-blue
-https://img.shields.io/badge/Supabase-PostgreSQL-green
-https://img.shields.io/badge/Tailwind-CSS-38B2AC
 
-Regulatory Task Management • Client Workspaces • Real-Time Status Tracking
+![Compliance](https://img.shields.io/badge/Compliance-Tracking-blue)
+![Next.js](https://img.shields.io/badge/Next.js-15-black)
+![TypeScript](https://img.shields.io/badge/TypeScript-5.0-blue)
+![Supabase](https://img.shields.io/badge/Supabase-PostgreSQL-green)
+![Tailwind](https://img.shields.io/badge/Tailwind-CSS-38B2AC)
+
+**Regulatory Task Management • Client Workspaces • Real-Time Status Tracking**
 
 </div>
-
-Mini Compliance Tracker is an enterprise-grade compliance operations interface designed for regulatory task management across client portfolios. The system provides centralized oversight of compliance obligations, automated overdue handling, and intuitive task management workflows.
 
 ## Stack
 
