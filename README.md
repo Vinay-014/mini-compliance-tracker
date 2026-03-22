@@ -27,13 +27,13 @@ A focused compliance operations UI for tracking regulatory tasks per client: cli
 
    ```bash
    npm install
-   
+   ```
 
 ## Environment Configuration
 Copy the environment template and add your project credentials:
 
 cp .env.example .env.local
-```
+
 | Variable | Description |
 | SUPABASE_URL | Project URL |
 | SUPABASE_ANON_KEY | anon / public key |
@@ -46,7 +46,7 @@ In the Supabase SQL editor, run the following scripts in order:
 ## Development Server
 Start the dev server:
 
-bash
+```bash
 npm run dev
 ```
 Open http://localhost:3000/.
