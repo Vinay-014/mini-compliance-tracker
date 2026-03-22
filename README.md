@@ -1,56 +1,83 @@
 # Mini Compliance Tracker
 
-Next.js 15 (App Router) + TypeScript + Tailwind CSS + Supabase. No authentication.
+A focused compliance operations UI for tracking regulatory tasks per client: client workspace, task cards with status and overdue handling, filters, and a modal to add tasks. Built for clarity and fast deployment—no authentication layer.
 
-## Local setup
+## Stack
 
-1. Copy `.env.example` to `.env.local` and set `SUPABASE_URL` and `SUPABASE_ANON_KEY` from the Supabase dashboard (Settings → API).
+- **Framework:** Next.js 15 (App Router), React 19, TypeScript  
+- **Styling:** Tailwind CSS, shadcn-style Radix UI components, Framer Motion, next-themes  
+- **Data:** Supabase (PostgreSQL) via `@supabase/supabase-js` (no ORM)
 
-2. In Supabase SQL Editor, run `supabase/schema.sql` then `supabase/seed.sql`.
+## Features
 
-3. Install and run:
+- Client overview with sidebar navigation (desktop + mobile sheet)  
+- Per-client task grid with category / status / overdue filters (URL-driven)  
+- Server actions for creating tasks and updating status  
+- Optional light/dark theme  
+- Demo-friendly RLS policies (see `supabase/schema.sql`)
 
+## Prerequisites
+
+- Node.js LTS  
+- A [Supabase](https://supabase.com) project  
+
+## Setup
+
+1. Clone the repository and install dependencies:
+
+   ```bash
+   npm install
+   ```
+
+## Environment Configuration
+Copy the environment template and add your project credentials:
 ```bash
-npm install
+cp .env.example .env.local
+```
+| Variable | Description |
+| SUPABASE_URL | Project URL |
+| SUPABASE_ANON_KEY | anon / public key |
+## Supabase Setup
+In the Supabase SQL editor, run the following scripts in order:
+
+1. `supabase/schema.sql`
+2. `supabase/seed.sql`
+
+## Development Server
+Start the dev server:
+```
+bash
 npm run dev
 ```
+Open http://localhost:3000/.
 
-Open [http://localhost:3000](http://localhost:3000).
+## Scripts
+| Command | Purpose |
+| npm run dev | Development (Turbopack) |
+| npm run build | Production build |
+| npm run start | Run production server |
+| npm run lint | ESLint |
+## Deployment (Vercel)
+1. Push to GitHub.
+2. Import the repo in Vercel.
+3. Set Environment Variables:
+    - SUPABASE_URL
+    - SUPABASE_ANON_KEY
+4. Deploy.
 
-## Git history (suggested commits)
+## Project Structure (High Level)
+- `app/ (dashboard)/`: Routed UI shell + pages
+    - `layout.tsx`: Root layout, theme, fonts
+- `lib/`:
+    - `actions/tasks.ts`: Server actions
+    - `supabase.ts`: Supabase client factory
+    - `task-utils.ts`: Overdue / filter helpers
+- `components/`: UI shell, task grid, dialogs, `ui/` primitives
+- `supabase/`:
+    - `schema.sql`: Tables + RLS (demo)
+    - `seed.sql`: Sample clients & tasks
 
-After `git init`, you can match a clean history with:
-
-```bash
-git add package.json tsconfig.json next.config.ts postcss.config.mjs tailwind.config.ts eslint.config.mjs next-env.d.ts .gitignore
-git commit -m "chore: add Next.js 15, TypeScript, Tailwind, ESLint config"
-
-git add lib/ types/
-git commit -m "feat: add Supabase client and task helpers"
-
-git add app/ components/
-git commit -m "feat: clients list, tasks page, filters, and server actions"
-
-git add supabase/ .env.example README.md
-git commit -m "docs: Supabase schema, seed data, and environment example"
+## Security Note
+This project uses the anon key with permissive policies for a demo. For production, tighten Row Level Security and add proper authentication.
 ```
-
-## Deploy (Vercel)
-
-1. Push this repo to GitHub.
-
-2. Import the repository in [Vercel](https://vercel.com/new).
-
-3. Add environment variables: `SUPABASE_URL`, `SUPABASE_ANON_KEY` (same values as local).
-
-4. Deploy. The production URL will be shown when the build finishes.
-
-## Project layout
-
-- `app/(dashboard)/page.tsx` — client overview (cards)
-- `app/(dashboard)/clients/[id]/page.tsx` — tasks grid, filters, add-task dialog
-- `app/(dashboard)/layout.tsx` — shell with sidebar
-- `lib/actions/tasks.ts` — server actions (create task, update status)
-- `components/task-grid.tsx`, `task-card.tsx`, `task-filters.tsx`, `add-task-dialog.tsx`
-- `lib/supabase.ts` — Supabase client
-- `supabase/schema.sql` — tables + RLS policies for demo
+```
