@@ -85,5 +85,3 @@ Open http://localhost:3000/.
 
 ## Security Note
 This project uses the anon key with permissive policies for a demo. For production, tighten Row Level Security and add proper authentication.
-```
-```
